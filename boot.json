@@ -1,0 +1,28 @@
+{
+  "name": "TaserMod",
+  "version": "1.0.1",
+  "styleFileList": [],
+  "scriptFileList_earlyload": [],
+  "scriptFileList_inject_early": [],
+  "scriptFileList_preload": [],
+  "scriptFileList": [],
+  "tweeFileList": ["twee/blackmarket.twee"],
+  "imgFileList": [],
+  "additionFile": [],
+  "addonPlugin": [
+    {
+      "modName": "maplebirch",
+      "addonName": "maplebirchAddon",
+      "modVersion": "^1.0.0",
+      "params": {
+        "script": ["framework.js"]
+      }
+    }
+  ],
+  "dependenceInfo": [
+    {
+      "modName": "maplebirch",
+      "version": ">=1.0.0"
+    }
+  ]
+}
