@@ -1,4 +1,4 @@
-# Taser & Blackmarket Mod (泰瑟枪与黑市)
+# TaserMod
 
 为《Degrees of Lewdity》添加一把可购买的泰瑟枪（电击枪）
 
