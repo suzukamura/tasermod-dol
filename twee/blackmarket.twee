@@ -10,8 +10,8 @@
 /* 泰瑟枪战斗效果 widget — 由 maplebirch 战斗按钮 effect 调用 */
 /* 框架会自动处理 $leftaction 重置和默认动作设置 */
 <<widget "taserModTaserEffect">>
-	<<if $hasTaser && $taserCharge > 0>>
-		<<set $taserCharge -= 1>>
+	<<if V.hasTaser && V.taserCharge > 0>>
+		<<run V.taserCharge -= 1>>
 		<<if random(1, 100) <= 3>>
 			<span class="red">泰瑟枪发出一声空响——卡壳了！电流在握把里乱窜，什么也没击中。</span>
 		<<else>>
@@ -19,7 +19,7 @@
 			<<run V.enemyhealth = 0>>
 			/* 2. 清零兴奋度 */
 			<<run V.enemyarousal = 0>>
-			/* 3. 强制打断敌人本回合动作，确保引擎直接进入胜利结算 */
+			/* 3. 打断敌人本回合动作，直接进入胜利结算，不知道为什么没有效果 */
 			<<run V.enemymove = "defeated">>
 			
 			<span class="green">泰瑟枪噼啪作响，蓝色的电弧猛然击中目标！对方浑身一僵，肌肉不受控制地痉挛。</span>
@@ -53,17 +53,16 @@
 	<span class="green">你持有泰瑟枪，剩余充能：<<print $taserCharge>>/3</span>
 	<br><br>
 	<div class="shop">
-		<<if $taserCharge lt 3>>
-			<<if $money gte 15000>>
-				<<link [[购买充能电池（+3 发）—— ￡150|Blackmarket Backroom]]>>
-					<<money -15000>>
-					<<set $taserCharge to 3>>
-				<</link>>
-			<<else>>
-				<span class="red">购买充能电池（+3 发）—— ￡150（钱不够）</span>
+		<<if $money gte 15000>>
+			<<link [[购买充能电池（补满至 3 发）—— ￡150|Blackmarket Backroom]]>>
+				<<money -15000>>
+				<<run V.taserCharge = 3>>
+			<</link>>
+			<<if $taserCharge gte 3>>
+				<span class="yellow">（电池已满，购买将不会增加电量）</span>
 			<</if>>
 		<<else>>
-			<span class="yellow">电池已满，不需要充电</span>
+			<span class="red">购买充能电池（补满至 3 发）—— ￡150（钱不够）</span>
 		<</if>>
 	</div>
 <</if>>
